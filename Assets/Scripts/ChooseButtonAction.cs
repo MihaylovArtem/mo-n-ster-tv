@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 
 public class ChooseButtonAction : MonoBehaviour {
-
     public Color DisabledColor;
     public Color EnabledColor;
     public News.AddingNews attachedNews;
@@ -21,7 +20,7 @@ public class ChooseButtonAction : MonoBehaviour {
     }
 
     public void OnClick() {
-        if (isClickable) {
+        if (attachedNews.Header != "") {
             if (!isPressed) {
                 if (GameManager.numberOfPressedButtons < GameManager.MaxNewsInDay) {
                     isPressed = true;
@@ -39,20 +38,26 @@ public class ChooseButtonAction : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        if (!attachedNews.Equals(null)) {
-            isClickable = true;
+        if (attachedNews.Header == "") {
+            thisButton.interactable = false;
         }
         else {
-            isClickable = false;
+            thisButton.interactable = true;
         }
     }
 
     private void OnGUI() {
-        if (attachedNews.Text != "") {
+        if (attachedNews.Header != "") {
             thisButtonText.text = attachedNews.Header;
         }
         else {
-            thisButtonText.text = "New topic will appear next day";
+            thisButtonText.text = "No news for now";
+        }
+        if (GameManager.currentGameState == GameManager.GameState.broadcasting && thisButton.interactable) {
+            thisButton.interactable = false;
+        }
+        else if (GameManager.currentGameState == GameManager.GameState.preparing && !thisButton.interactable) {
+            thisButton.interactable = true;
         }
     }
 }

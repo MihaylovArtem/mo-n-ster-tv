@@ -22,7 +22,6 @@ public class News : MonoBehaviour
             Criminal = new ArrayList();
             Fun = new ArrayList();
             Politics = new ArrayList();
-
         }
     }
 
@@ -40,7 +39,20 @@ public class News : MonoBehaviour
         public int FunChange;
         public int SocialChange;
         public int PoliticsChange;
+
+        public AddingNews(int i) {
+            Text = "";
+            Header = "";
+            ScienceChange = 0;
+            SportChange = 0;
+            CriminalChange = 0;
+            FunChange = 0;
+            SocialChange = 0;
+            PoliticsChange = 0;
+        }
     }
+
+    public static AddingNews clearNews = new AddingNews(1);
 
     public static void AddNewsToCategory(ArrayList newsType, string text, string header, int scienceChange, int sportChange, int criminalChange, int funChange, 
                             int politicsChange, int socialChange ) {
@@ -100,22 +112,23 @@ public class News : MonoBehaviour
 		AllNewsCopy = AllNews;
 	}
 
-    public static void AddNewsToCur(ArrayList allNews, ArrayList curNews)
-    {
-        int i = UnityEngine.Random.Range(0, allNews.Count);
-        curNews.Add(allNews[i]);
-        allNews.RemoveAt(i);
+    public static void AddNewsToCur(ArrayList allNews, ArrayList curNews) {
+        if (allNews.Count > 0) {
+            int i = UnityEngine.Random.Range(0, allNews.Count);
+            curNews.Add(allNews[i]);
+            allNews.RemoveAt(i);
+        }
     }
 
     public static void RemoveSelectedNewsFromCur(ArrayList arrayOfNews) 
     {
         foreach (var news in arrayOfNews) {
-            CurNews.Science.Remove(news);
-            CurNews.Sport.Remove(news);
-            CurNews.Social.Remove(news);
-            CurNews.Criminal.Remove(news);
-            CurNews.Fun.Remove(news);
-            CurNews.Politics.Remove(news);
+            if (CurNews.Science.Contains(news)) CurNews.Science.Remove(news);
+            if (CurNews.Sport.Contains(news)) CurNews.Sport.Remove(news);
+            if (CurNews.Social.Contains(news)) CurNews.Social.Remove(news);
+            if (CurNews.Criminal.Contains(news)) CurNews.Criminal.Remove(news);
+            if (CurNews.Fun.Contains(news)) CurNews.Fun.Remove(news);
+            if (CurNews.Politics.Contains(news)) CurNews.Politics.Remove(news);
         }
     }
 }
