@@ -32,9 +32,9 @@ public class News : MonoBehaviour
         public int PoliticsChange;
     }
 
-    private AddingNews newsToAdd;
+    public static AddingNews newsToAdd;
 
-    public void AddNewsToCategory(ArrayList newsType, string text, string header, int scienceChange, int sportChange, int criminalChange, int funChange, 
+    public static void AddNewsToCategory(ArrayList newsType, string text, string header, int scienceChange, int sportChange, int criminalChange, int funChange, 
                             int politicsChange, int socialChange )
     {
         newsToAdd.Text = text;
@@ -50,7 +50,44 @@ public class News : MonoBehaviour
 	// Use this for initialization
 	public static void InitializeNews ()
 	{
-	    AllNewsCopy = AllNews;
+		AddNewsToCategory (AllNews.Politics, "This Morning Vladimir Putin has visited summit in Nigeria. The new antiterror program was admitted.", "Vladimir Putin & Nigeria", 0, 0, 0, 0, 3, -2);
+		AddNewsToCategory (AllNews.Politics, "60% percent of Americans don’t want to know anything about them. 30% are really interested. 10% have never heard about the 2016 elections.", "2016 presidential candidates", 0, 0, 0, 6, -3, -2); 
+		AddNewsToCategory (AllNews.Politics, "Poroshenko: All is OK. Don’t Worry.", "Conflict in Ukraine", 0, 0, 1, 4, -3, -3); 
+		AddNewsToCategory (AllNews.Politics, "S. & N. Korea trade warmongering accusations following exchange of fire.", "North Korea", 0, 0, 3, -6, 3, -2); 
+		AddNewsToCategory (AllNews.Politics, "According to a new opinion poll, 41 percent of Russians consider the events of 1991 that ended in the breakup of the Soviet Union as tragic and perilous, but 34 percent hold that since then the nation chose the right path of development.", "1991 coup", 0, 0, 0, -4, 5, 1); 
+	    
+		AddNewsToCategory (AllNews.Fun, "1) Bend The Rules: Hewlett-Packard (HP) 2) Refreshingly Honest: Honest Tea 3) The Last Selfie: World Wildlife Fund (WWF)", "Social Media Campaigns", 1, -2, -3, 4, 5, 1); 
+		AddNewsToCategory (AllNews.Fun, "PowerPoint won!", "Keynote Vs. PowerPoint", 0, -2, -3, 4, 0, 1); 
+		AddNewsToCategory (AllNews.Fun, "J.K. Rowling announced a new book called  Harry Potter : apocalypse.", "J.K. Rowling", 0, 0, 0, 5, 0, -5); 
+		AddNewsToCategory (AllNews.Fun, "Santa Barbara comes back. The «pilot» of new season of Santa Barbara was shown this Friday. 889 series left.", "Santa Barbara", -5, 0, 0, 7, 0, -2); 
+		AddNewsToCategory (AllNews.Fun, "The world's highest paid actress is Jennifer Lawrence, the 25-year-old Hunger Games star, is the world's highest paid actress.", "Highest paid actress", 0, 0, 0, 2, -3, +1);
+
+		AddNewsToCategory (AllNews.Social, "Aunt Zina from Uvelka, Chelyabinsk, Russia lost her cat called Vasya.", "Aunt Zina", -6, +1, 0, 0, 0, +2); 
+		AddNewsToCategory (AllNews.Social, "The military should avoid turning the conduct of warfare over to machines, because nowadays one should be focused on ending war, not extending it into a robot era, Mark Gubrud, physicist and expert on emerging technology and human security.!", "Robots replacing soldiers", 5, 0, 5, 0, 0, -8); 
+		AddNewsToCategory (AllNews.Social, "Today’s geopolitical environment has made the task of creating a national payment system in Russia extremely urgent.", "Payment Cards", 0, 0, +4, -3, 0, -2); 
+		AddNewsToCategory (AllNews.Social, "Man opens fire on Amsterdam to Paris train, gets overpowered by passengers ", "Fire on train", 0, 0, 3, -4, 0, -1); 
+		AddNewsToCategory (AllNews.Social, "Gunman kills self at Brighton Beach federal building ", "Brighton Beach", 0, 0, 3, -4, 0, -1); 
+
+		AddNewsToCategory (AllNews.Sport, "Messi reached the Golden Socks medal. ", "Messi", 0, 5, -6, 4, 0, -1);
+		AddNewsToCategory (AllNews.Sport, "Dota 2 became a new olympic sport. ", "Dota2 News", 0, 4, 0, 4, 0, -5);
+		AddNewsToCategory (AllNews.Sport, "A number of famous Kenyan distance runners are to take part in a 22-day ‘walk for peace,’ across the north of the country. The 836 km event is aimed at stopping ethnic violence in the area and hopes to raise $250,000 to support peace initiatives. ", "Star athletes", 0, 5, 0, -4, 0, 3);
+		AddNewsToCategory (AllNews.Sport, "A 15-year-old powerlifting champion, Maryana Naumova from Russia, has met with 'The Terminator,' Arnold Schwarzenegger, and asked him to make peace between US and Russia. He promised to work on it, she said.", "World's 'strongest' girl", 0, 0, 0, -3, 5, -1);
+		AddNewsToCategory (AllNews.Sport, "All three medals taken by Russia in the pairs’ competition saw the country completing the 2015 European Figure Skating Championships with an impressive 9 medals, including 2 golds snatched in two medals sweeps. ", "Figure skating Euros", 0, 6, 0, 2, -7, 1);
+
+		AddNewsToCategory (AllNews.Criminal, "A teenager has been hailed a hero after helping a kidnapped woman escape from the clutches of her ex-boyfriend.", "Teenage hero", 0, 5, +6, 0, -10, 5);
+		AddNewsToCategory (AllNews.Criminal, "Investigators are trying to determine why an armed veteran opened fire in a federal building in Manhattan, fatally shooting a security guard before killing himself. ", "Federal building shooting ", -5, 0, 8, -2, 0, -3);
+		AddNewsToCategory (AllNews.Criminal, "A man convicted in the 1999 slaying of an 84-year-old woman through a unique glove and DNA match has been sentenced to life in prison. ", "Life in prison", -3, 0, +6, -3, 0, -1);
+		AddNewsToCategory (AllNews.Criminal, "Barak Obama was killed by his bodyguard. ", "Obama DEAD (not proffed)", 0, 0, -15, 0, 0, 20);
+		AddNewsToCategory (AllNews.Criminal, "A Baseball star was murdered at his own house.", "Murder. Bill Strawberry ", 0, -15, 0, 10, 0, 10);
+
+		AddNewsToCategory (AllNews.Science, "We're smarter than chickens", "Human & Chicken", 2, -1, -2, -2, -1, 10);
+		AddNewsToCategory (AllNews.Science, "The July average temperature across global land and ocean surfaces was 1.46°F (0.81°C) above the 20th century average.", "Global Warming", 5, 0, 0, -2, 0, -5);
+		AddNewsToCategory (AllNews.Science, "Black holes may make ideal dark matter labs", "Dark Energy", 5, 0, 0, -3, 0, 0);
+		AddNewsToCategory (AllNews.Science, "Scientists invented a new car with air energy reactor!", "Cars ", 10, -10, 0, 3, -5, 10);
+		AddNewsToCategory (AllNews.Science, "A new nuclear weapon in Pakistan was developed", "Weapons", 0, 0, 20, -10, 0, 0);
+
+
+		AllNewsCopy = AllNews;
 	}
 
     public static void AddNewsToCur(ArrayList allNews, ArrayList curNews)
