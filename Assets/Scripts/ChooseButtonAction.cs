@@ -48,11 +48,11 @@ public class ChooseButtonAction : MonoBehaviour {
     }
 
     private void OnGUI() {
-        if (attachedNews.Text == "") {
+        if (attachedNews.Text != "") {
             thisButtonText.text = attachedNews.Header;
         }
         else {
-            thisButtonText.text = "New topic\n will appear next day";
+            thisButtonText.text = "New topic will appear next day";
         }
     }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         public static float Entertainment = 100;
         public static float Sport = 40;
         public static float Cryminal = 100;
-        public static float Polytics = 100;
+        public static float Polytics = 20;
     }
 
     void ChangeInterestPercent() {
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     void Start() {
         News.InitializeNews();
         InitializeUI();
+        StartDay();
     }
 
     private void InitializeUI() {
@@ -70,12 +71,21 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     private void CheckCategory(ArrayList allNews, ArrayList curNews) {
-        if (allNews.Count < 3) {
+        if (curNews.Count < 3) {
             News.AddNewsToCur(allNews, curNews);
         }
     }
 
     private void StartDay() {
+        for (int i = 0; i < 3; i++) {
+            CheckCategory(News.AllNewsCopy.Sport, News.CurNews.Sport);
+            CheckCategory(News.AllNewsCopy.Science, News.CurNews.Science);
+            CheckCategory(News.AllNewsCopy.Fun, News.CurNews.Fun);
+            CheckCategory(News.AllNewsCopy.Social, News.CurNews.Social);
+            CheckCategory(News.AllNewsCopy.Politics, News.CurNews.Politics);
+            CheckCategory(News.AllNewsCopy.Criminal, News.CurNews.Criminal);
+        }
+
         for (int i=0;i<3;i++) {
             sportButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Sport[i];
             scienceButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Science[i];
