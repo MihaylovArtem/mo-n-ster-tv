@@ -33,6 +33,7 @@ public class TabControl : MonoBehaviour {
         anotherControlImage = anotherControl.GetComponent<Image>();
 
         if (isDefault) OnClick();
+
     }
 
 	public void OnClick () {
