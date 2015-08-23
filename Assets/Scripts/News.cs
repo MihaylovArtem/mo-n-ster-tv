@@ -6,7 +6,7 @@ using System.Collections;
 
 public class News : MonoBehaviour
 {
-    public struct NewsList
+    public  struct NewsList
     {
         public ArrayList Science;
         public ArrayList Sport;
@@ -14,11 +14,21 @@ public class News : MonoBehaviour
         public ArrayList Criminal;
         public ArrayList Fun;
         public ArrayList Politics;
+
+        public NewsList(int i) {
+            Science = new ArrayList();
+            Sport = new ArrayList();
+            Social = new ArrayList();
+            Criminal = new ArrayList();
+            Fun = new ArrayList();
+            Politics = new ArrayList();
+
+        }
     }
 
-    public static NewsList AllNews;
-    public static NewsList AllNewsCopy;
-    public static NewsList CurNews;
+    public static NewsList AllNews = new NewsList(1);
+    public static NewsList AllNewsCopy = new NewsList(1);
+    public static NewsList CurNews = new NewsList(1);
 
     public struct AddingNews
     {
@@ -32,11 +42,9 @@ public class News : MonoBehaviour
         public int PoliticsChange;
     }
 
-    public static AddingNews newsToAdd;
-
     public static void AddNewsToCategory(ArrayList newsType, string text, string header, int scienceChange, int sportChange, int criminalChange, int funChange, 
-                            int politicsChange, int socialChange )
-    {
+                            int politicsChange, int socialChange ) {
+        AddingNews newsToAdd = new AddingNews();
         newsToAdd.Text = text;
         newsToAdd.Header = header;
         newsToAdd.CriminalChange = criminalChange;
@@ -47,6 +55,7 @@ public class News : MonoBehaviour
         newsToAdd.SocialChange = socialChange;
         newsType.Add(newsToAdd);
     }
+
 	// Use this for initialization
 	public static void InitializeNews ()
 	{
@@ -55,7 +64,8 @@ public class News : MonoBehaviour
 		AddNewsToCategory (AllNews.Politics, "Poroshenko: All is OK. Don’t Worry.", "Conflict in Ukraine", 0, 0, 1, 4, -3, -3); 
 		AddNewsToCategory (AllNews.Politics, "S. & N. Korea trade warmongering accusations following exchange of fire.", "North Korea", 0, 0, 3, -6, 3, -2); 
 		AddNewsToCategory (AllNews.Politics, "According to a new opinion poll, 41 percent of Russians consider the events of 1991 that ended in the breakup of the Soviet Union as tragic and perilous, but 34 percent hold that since then the nation chose the right path of development.", "1991 coup", 0, 0, 0, -4, 5, 1); 
-	    
+
+
 		AddNewsToCategory (AllNews.Fun, "1) Bend The Rules: Hewlett-Packard (HP) 2) Refreshingly Honest: Honest Tea 3) The Last Selfie: World Wildlife Fund (WWF)", "Social Media Campaigns", 1, -2, -3, 4, 5, 1); 
 		AddNewsToCategory (AllNews.Fun, "PowerPoint won!", "Keynote Vs. PowerPoint", 0, -2, -3, 4, 0, 1); 
 		AddNewsToCategory (AllNews.Fun, "J.K. Rowling announced a new book called  Harry Potter : apocalypse.", "J.K. Rowling", 0, 0, 0, 5, 0, -5); 
