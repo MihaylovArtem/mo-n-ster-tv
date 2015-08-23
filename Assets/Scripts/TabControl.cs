@@ -4,10 +4,17 @@ using System.Collections;
 
 public class TabControl : MonoBehaviour {
 
-    public Button thisControl;
-    public Button anotherControl;
-    public GameObject thisControlGroup;
-    public GameObject anotherControlGroup;
+    private Button thisControl;
+    private Image thisControlImage;
+    private Button anotherControl;
+    private Image anotherControlImage;
+    private GameObject thisControlGroup;
+    private GameObject anotherControlGroup;
+
+    public Color enabledColor;
+    public Color disabledColor;
+
+    public bool isDefault;
 
     void Start() {
         thisControl = gameObject.GetComponent<Button>();
@@ -15,14 +22,23 @@ public class TabControl : MonoBehaviour {
         if (gameObject.name == "tab1") {
             anotherControl = GameObject.Find("tab2").gameObject.GetComponent<Button>();
             thisControlGroup = GameObject.Find("Statistics").gameObject;
+            anotherControlGroup = GameObject.Find("Actions").gameObject;
         }
         else {
             anotherControl = GameObject.Find("tab1").gameObject.GetComponent<Button>();
-            anotherControlGroup = GameObject.Find("Actions").gameObject;
+            thisControlGroup = GameObject.Find("Actions").gameObject;
+            anotherControlGroup = GameObject.Find("Statistics").gameObject;
         }
+        thisControlImage = gameObject.GetComponent<Image>();
+        anotherControlImage = anotherControl.GetComponent<Image>();
+
+        if (isDefault) OnClick();
     }
 
-	void OnClick () {
-
+	public void OnClick () {
+        anotherControlGroup.SetActive(false);
+        thisControlGroup.SetActive(true);
+	    thisControlImage.color = enabledColor;
+	    anotherControlImage.color = disabledColor;
 	}
 }
