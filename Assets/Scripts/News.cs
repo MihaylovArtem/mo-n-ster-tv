@@ -20,7 +20,7 @@ public class News : MonoBehaviour
     public static NewsList AllNewsCopy;
     public static NewsList CurNews;
 
-    private struct AddingNews
+    public struct AddingNews
     {
         public string Text;
         public string Header;
@@ -57,6 +57,18 @@ public class News : MonoBehaviour
     {
         int i = UnityEngine.Random.Range(0, allNews.Count);
         curNews.Add(allNews[i]);
-        allNews.Remove(i);
+        allNews.RemoveAt(i);
+    }
+
+    public static void RemoveSelectedNewsFromCur(ArrayList arrayOfNews) 
+    {
+        foreach (var news in arrayOfNews) {
+            CurNews.Science.Remove(news);
+            CurNews.Sport.Remove(news);
+            CurNews.Social.Remove(news);
+            CurNews.Criminal.Remove(news);
+            CurNews.Fun.Remove(news);
+            CurNews.Politics.Remove(news);
+        }
     }
 }

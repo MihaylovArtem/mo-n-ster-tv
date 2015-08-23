@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public const int MaxNewsInDay = 3;
+    public static int MaxNewsInDay = 3;
     public static int Audience = 0;
     public static int Money = 1000;
     public static int DayCount = 1;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private Text audienceStats;
     private Text moneyStats;
     private Text moralStats;
+    private Text topicsLeftText;
 
     private RectTransform backViewPanel;
 
@@ -37,8 +38,17 @@ public class GameManager : MonoBehaviour
     private RectTransform socialPercentPanel;
     private RectTransform sportsPercentPanel;
 
+    public GameObject[] sportButtons;
+    public GameObject[] scienceButtons;
+    public GameObject[] cryminalButtons;
+    public GameObject[] polyticsButtons;
+    public GameObject[] socialButtons;
+    public GameObject[] entertainmentButtons;
+
+    public static int numberOfPressedButtons = 0;
+
     // Use this for initialization
-    private void Start() {
+    void Start() {
         News.InitializeNews();
         InitializeUI();
     }
@@ -47,6 +57,7 @@ public class GameManager : MonoBehaviour
         moneyStats = GameObject.Find("Money").gameObject.GetComponent<Text>();
         audienceStats = GameObject.Find("Audience").gameObject.GetComponent<Text>();
         moralStats = GameObject.Find("Moral").gameObject.GetComponent<Text>();
+        topicsLeftText = GameObject.Find("TopicsLeftStats").gameObject.GetComponent<Text>();
 
         backViewPanel = GameObject.Find("Back View Sample").gameObject.GetComponent<RectTransform>();
         sportsPercentPanel = GameObject.Find("Sport Percent View").gameObject.GetComponent<RectTransform>();
@@ -61,6 +72,24 @@ public class GameManager : MonoBehaviour
     private void CheckCategory(ArrayList allNews, ArrayList curNews) {
         if (allNews.Count < 3) {
             News.AddNewsToCur(allNews, curNews);
+        }
+    }
+
+    private void StartDay() {
+        for (int i=0;i<3;i++) {
+            sportButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Sport[i];
+            scienceButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Science[i];
+            socialButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Social[i];
+            entertainmentButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Fun[i];
+            cryminalButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Criminal[i];
+            polyticsButtons[i].GetComponent<ChooseButtonAction>().attachedNews = (News.AddingNews) News.CurNews.Politics[i];
+        }
+    }
+
+    public void StartBroadcasting() {
+        foreach (var button in GameObject.FindGameObjectsWithTag("chooseButton"))
+        {
+//            if (button.GetComponent<ChooseButtonAction>().isPressed)
         }
     }
 
@@ -85,5 +114,7 @@ public class GameManager : MonoBehaviour
 
         audienceStats.text = Audience + " PEOPLE ARE WATCHING YOU";
         moneyStats.text = "YOU HAVE " + Money + "$";
+
+        topicsLeftText.text = "CHOOSE " + (MaxNewsInDay - numberOfPressedButtons) + " TOPICS";
     }
 }

@@ -36,8 +36,8 @@ public class TabControl : MonoBehaviour {
     }
 
 	public void OnClick () {
-        anotherControlGroup.SetActive(false);
-        thisControlGroup.SetActive(true);
+        anotherControlGroup.transform.localScale = new Vector3(0,0,0);
+        thisControlGroup.transform.localScale = new Vector3(1,1,1);
 	    thisControlImage.color = enabledColor;
 	    anotherControlImage.color = disabledColor;
 	}
