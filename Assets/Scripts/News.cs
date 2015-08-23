@@ -48,11 +48,9 @@ public class News : MonoBehaviour
         newsType.Add(newsToAdd);
     }
 	// Use this for initialization
-	void Start ()
+	public static void InitializeNews ()
 	{
-        
 	    AllNewsCopy = AllNews;
-
 	}
 
     public static void AddNewsToCur(ArrayList allNews, ArrayList curNews)
@@ -60,11 +58,5 @@ public class News : MonoBehaviour
         int i = UnityEngine.Random.Range(0, allNews.Count);
         curNews.Add(allNews[i]);
         allNews.Remove(i);
-
     }
-	// Update is called once per frame
-	void Update () 
-    {
-	    
-	}
 }

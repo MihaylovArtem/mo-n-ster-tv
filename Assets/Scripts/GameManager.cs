@@ -1,57 +1,89 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public struct Interest
+    {
+        public static float Science = 80;
+        public static float Social = 100;
+        public static float Entertainment = 100;
+        public static float Sport = 40;
+        public static float Cryminal = 100;
+        public static float Polytics = 100;
+    }
 
+    void ChangeInterestPercent() {
+        
+    }
+
+    public const int MaxNewsInDay = 3;
     public static int Audience = 0;
     public static int Money = 1000;
     public static int DayCount = 1;
     public static int NewsInDayCount = 0;
 
-    public const int MaxNewsInDay = 3;
+    private Text audienceStats;
+    private Text moneyStats;
+    private Text moralStats;
 
-    public  struct Interest
-    {
-        public static int Science = 100;
-        public static int Social = 100;
-        public static int Fun = 100;
-        public static int Sport = 100;
-        public static int Criminal = 100;
+    private RectTransform backViewPanel;
+
+    private RectTransform cryminalPercentPanel;
+    private RectTransform entertainmentPercentPanel;
+    private RectTransform polyticsPercentPanel;
+    private RectTransform sciencePercentPanel;
+    private RectTransform socialPercentPanel;
+    private RectTransform sportsPercentPanel;
+
+    // Use this for initialization
+    private void Start() {
+        News.InitializeNews();
+        InitializeUI();
     }
 
+    private void InitializeUI() {
+        moneyStats = GameObject.Find("Money").gameObject.GetComponent<Text>();
+        audienceStats = GameObject.Find("Audience").gameObject.GetComponent<Text>();
+        moralStats = GameObject.Find("Moral").gameObject.GetComponent<Text>();
 
-	// Use this for initialization
-	void Start () 
-    {
-	    
-	}
-	
-	// Update is called once per frame
-    void CheckCategory(ArrayList allNews, ArrayList curNews)
-    {
-        if (allNews.Count < 3)
-        {
+        backViewPanel = GameObject.Find("Back View Sample").gameObject.GetComponent<RectTransform>();
+        sportsPercentPanel = GameObject.Find("Sport Percent View").gameObject.GetComponent<RectTransform>();
+        sciencePercentPanel = GameObject.Find("Science Percent View").gameObject.GetComponent<RectTransform>();
+        polyticsPercentPanel = GameObject.Find("Polytics Percent View").gameObject.GetComponent<RectTransform>();
+        entertainmentPercentPanel = GameObject.Find("Entertainment Percent View").gameObject.GetComponent<RectTransform>();
+        socialPercentPanel = GameObject.Find("Social Percent View").gameObject.GetComponent<RectTransform>();
+        cryminalPercentPanel = GameObject.Find("Cryminal Percent View").gameObject.GetComponent<RectTransform>();
+    }
+
+    // Update is called once per frame
+    private void CheckCategory(ArrayList allNews, ArrayList curNews) {
+        if (allNews.Count < 3) {
             News.AddNewsToCur(allNews, curNews);
         }
     }
-	void Update () 
-    {
-	    if (NewsInDayCount == MaxNewsInDay)
-	    {
-	        DayCount++;
-	        NewsInDayCount = 0;
-	        CheckCategory(News.AllNewsCopy.Sport, News.CurNews.Sport);
-            CheckCategory(News.AllNewsCopy.Science, News.CurNews.Science);
-            CheckCategory(News.AllNewsCopy.Fun, News.CurNews.Fun);
-            CheckCategory(News.AllNewsCopy.Social, News.CurNews.Social);
-            CheckCategory(News.AllNewsCopy.Politics, News.CurNews.Politics);
-            CheckCategory(News.AllNewsCopy.Criminal, News.CurNews.Criminal);
-	    }
-	    else
-	    {
-	        //выбор новости
-	        NewsInDayCount++;
-	    }
-	}
+
+    private void EndDay() {
+        DayCount++;
+        NewsInDayCount = 0;
+        CheckCategory(News.AllNewsCopy.Sport, News.CurNews.Sport);
+        CheckCategory(News.AllNewsCopy.Science, News.CurNews.Science);
+        CheckCategory(News.AllNewsCopy.Fun, News.CurNews.Fun);
+        CheckCategory(News.AllNewsCopy.Social, News.CurNews.Social);
+        CheckCategory(News.AllNewsCopy.Politics, News.CurNews.Politics);
+        CheckCategory(News.AllNewsCopy.Criminal, News.CurNews.Criminal);
+    }
+
+    private void OnGUI() {
+        sportsPercentPanel.sizeDelta = new Vector2(Interest.Sport / 100 * backViewPanel.rect.width, sportsPercentPanel.rect.height);
+        sciencePercentPanel.sizeDelta = new Vector2(Interest.Science/ 100 * backViewPanel.rect.width, sciencePercentPanel.rect.height);
+        entertainmentPercentPanel.sizeDelta = new Vector2(Interest.Entertainment / 100 * backViewPanel.rect.width, entertainmentPercentPanel.rect.height);
+        socialPercentPanel.sizeDelta = new Vector2(Interest.Social/ 100 * backViewPanel.rect.width, socialPercentPanel.rect.height);
+        polyticsPercentPanel.sizeDelta = new Vector2(Interest.Polytics/ 100 * backViewPanel.rect.width, polyticsPercentPanel.rect.height);
+        cryminalPercentPanel.sizeDelta = new Vector2(Interest.Cryminal/100*backViewPanel.rect.width, cryminalPercentPanel.rect.height);
+
+        audienceStats.text = Audience + " PEOPLE ARE WATCHING YOU";
+        moneyStats.text = "YOU HAVE " + Money + "$";
+    }
 }
