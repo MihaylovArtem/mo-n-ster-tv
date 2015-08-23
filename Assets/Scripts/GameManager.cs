@@ -2,19 +2,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public struct Interest
+    {
+        public static float Science = 80;
+        public static float Social = 100;
+        public static float Entertainment = 100;
+        public static float Sport = 40;
+        public static float Cryminal = 100;
+        public static float Polytics = 100;
+    }
+
+    void ChangeInterestPercent() {
+        
+    }
+
     public const int MaxNewsInDay = 3;
     public static int Audience = 0;
     public static int Money = 1000;
     public static int DayCount = 1;
     public static int NewsInDayCount = 0;
-
-    public float sportsInterest = 100;
-    public float scienceInterest = 100;
-    public float polyticsInterest = 100;
-    public float entertainmentInterest = 50;
-    public float socialInterest = 23;
-    public float cryminalInterest = 35;
 
     private Text audienceStats;
     private Text moneyStats;
@@ -68,27 +76,14 @@ public class GameManager : MonoBehaviour {
     }
 
     private void OnGUI() {
-        sportsPercentPanel.sizeDelta = new Vector2(sportsInterest / 100 * backViewPanel.rect.width, sportsPercentPanel.rect.height);
-
-        sciencePercentPanel.sizeDelta = new Vector2(scienceInterest/100*backViewPanel.rect.width, sciencePercentPanel.rect.height);
-
-        entertainmentPercentPanel.sizeDelta = new Vector2(entertainmentInterest/100*backViewPanel.rect.width, entertainmentPercentPanel.rect.height);
-
-        socialPercentPanel.sizeDelta = new Vector2(socialInterest/100*backViewPanel.rect.width, socialPercentPanel.rect.height);
-
-        polyticsPercentPanel.sizeDelta = new Vector2(polyticsInterest/100*backViewPanel.rect.width, polyticsPercentPanel.rect.height);
-
-        cryminalPercentPanel.sizeDelta = new Vector2(cryminalInterest/100*backViewPanel.rect.width, cryminalPercentPanel.rect.height);
+        sportsPercentPanel.sizeDelta = new Vector2(Interest.Sport / 100 * backViewPanel.rect.width, sportsPercentPanel.rect.height);
+        sciencePercentPanel.sizeDelta = new Vector2(Interest.Science/ 100 * backViewPanel.rect.width, sciencePercentPanel.rect.height);
+        entertainmentPercentPanel.sizeDelta = new Vector2(Interest.Entertainment / 100 * backViewPanel.rect.width, entertainmentPercentPanel.rect.height);
+        socialPercentPanel.sizeDelta = new Vector2(Interest.Social/ 100 * backViewPanel.rect.width, socialPercentPanel.rect.height);
+        polyticsPercentPanel.sizeDelta = new Vector2(Interest.Polytics/ 100 * backViewPanel.rect.width, polyticsPercentPanel.rect.height);
+        cryminalPercentPanel.sizeDelta = new Vector2(Interest.Cryminal/100*backViewPanel.rect.width, cryminalPercentPanel.rect.height);
 
         audienceStats.text = Audience + " PEOPLE ARE WATCHING YOU";
         moneyStats.text = "YOU HAVE " + Money + "$";
-    }
-
-    public struct Interest {
-        public static int Science = 100;
-        public static int Social = 100;
-        public static int Fun = 100;
-        public static int Sport = 100;
-        public static int Criminal = 100;
     }
 }
