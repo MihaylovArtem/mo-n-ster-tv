@@ -12,6 +12,10 @@ public class ChooseButtonAction : MonoBehaviour {
     private Text thisButtonText;
     private Image thisButtonsImage;
 
+    public Sprite enabledSprite;
+    public Sprite disabledSprite;
+
+
     // Use this for initialization
     private void Start() {
         thisButton = gameObject.GetComponent<Button>();
@@ -24,12 +28,14 @@ public class ChooseButtonAction : MonoBehaviour {
             if (!isPressed) {
                 if (GameManager.numberOfPressedButtons < GameManager.MaxNewsInDay) {
                     isPressed = true;
+                    thisButtonsImage.sprite = enabledSprite;
                     thisButtonsImage.color = EnabledColor;
                     GameManager.numberOfPressedButtons++;
                 }
             }
             else {
                 isPressed = false;
+                thisButtonsImage.sprite = disabledSprite;
                 thisButtonsImage.color = DisabledColor;
                 GameManager.numberOfPressedButtons--;
             }
@@ -55,9 +61,6 @@ public class ChooseButtonAction : MonoBehaviour {
         }
         if (GameManager.currentGameState == GameManager.GameState.broadcasting && thisButton.interactable) {
             thisButton.interactable = false;
-        }
-        else if (GameManager.currentGameState == GameManager.GameState.preparing && !thisButton.interactable) {
-            thisButton.interactable = true;
         }
     }
 }
