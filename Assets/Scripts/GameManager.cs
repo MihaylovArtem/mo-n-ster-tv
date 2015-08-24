@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
     public enum GameState {
         preparing,
         broadcasting,
+        stats
     }
 
     public static int SALARY = 200;
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
     public static int MaxNewsInDay = 2;
     public static int Audience = 1000;
-    public static int Money = 1000;
+    public static int Money = 0;
     public static int DayCount = 1;
     public static int NewsInDayCount = 0;
     public static int numberOfPressedButtons = 0;
@@ -177,6 +178,7 @@ public class GameManager : MonoBehaviour {
 
         incomeFromNews = 0;
         NewsLabel.news.AddRange(newsToBroadcast);
+
     }
 
     public void EndDay() {
@@ -205,7 +207,8 @@ public class GameManager : MonoBehaviour {
 
         Money = Money - moneyForSalary - moneyForRent - moneyToGovernment;
 
-        EndGameStats.transform.localScale = new Vector3(1,1,1);
+        EndGameStats.transform.localScale = new Vector3(1, 1, 1);
+        currentGameState = GameState.stats;
     }
 
     public static int CountIncomeFromNew(News.AddingNews news) {
