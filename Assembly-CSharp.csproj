@@ -46,11 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-     <Compile Include="Assets\ParketScript.cs" />
-=======
      <Compile Include="Assets\EndDayScript.cs" />
->>>>>>> origin/master
+     <Compile Include="Assets\ParketScript.cs" />
      <Compile Include="Assets\Scripts\ChooseButtonAction.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
@@ -58,34 +55,16 @@
      <Compile Include="Assets\Scripts\News.cs" />
      <Compile Include="Assets\Scripts\NewsLabel.cs" />
      <Compile Include="Assets\Scripts\TabControl.cs" />
-<<<<<<< HEAD
-     <Compile Include="Assets\Scripts\WalkingPeople.cs" />
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-=======
      <Compile Include="Assets\Scripts\Upgrades.cs" />
+     <Compile Include="Assets\Scripts\WalkingPeople.cs" />
  <Reference Include="UnityEngine.UI">
-<<<<<<< HEAD
  <HintPath>E:/Programms/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-=======
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
->>>>>>> origin/master
->>>>>>> 4aa7311be2778ad4cfaebaf0ee2d5a25a736b950
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>E:/Programms/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
-<<<<<<< HEAD
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-=======
  <Reference Include="UnityEngine.Analytics">
-<<<<<<< HEAD
  <HintPath>E:/Programms/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-=======
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
->>>>>>> origin/master
->>>>>>> 4aa7311be2778ad4cfaebaf0ee2d5a25a736b950
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>E:/Programms/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
