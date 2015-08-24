@@ -70,10 +70,10 @@ public class News : MonoBehaviour
 
 	// Use this for initialization
 	public static void InitializeNews ()
-	{
-		AddNewsToCategory (AllNews.Politics, "This Morning Vladimir Putin has visited summit in Nigeria. The new antiterror program was admitted.", "Vladimir Putin & Nigeria", 0, 0, 0, 0, 3, -2);
+	{	//12
+		AddNewsToCategory (AllNews.Politics, "This Morning Vladimir Shutin has visited summit in Nigeria. The new antiterror program was admitted.", "Vladimir Shutin & Nigeria", 0, 0, 0, 0, 3, -2);
 		AddNewsToCategory (AllNews.Politics, "60% percent of Americans don’t want to know anything about them. 30% are really interested. 10% have never heard about the 2016 elections.", "2016 presidential candidates", 0, 0, 0, 6, -3, -2); 
-		AddNewsToCategory (AllNews.Politics, "Poroshenko: All is OK. Don’t Worry.", "Conflict in Ukraine", 0, 0, 1, 4, -3, -3); 
+		AddNewsToCategory (AllNews.Politics, "Boroshenko: All is OK. Don’t Worry.", "Conflict in Ukraine", 0, 0, 1, 4, -3, -3); 
 		AddNewsToCategory (AllNews.Politics, "S. & N. Korea trade warmongering accusations following exchange of fire.", "North Korea", 0, 0, 3, -6, 3, -2); 
 		AddNewsToCategory (AllNews.Politics, "According to a new opinion poll, 41 percent of Russians consider the events of 1991 that ended in the breakup of the Soviet Union as tragic and perilous, but 34 percent hold that since then the nation chose the right path of development.", "1991 coup", 0, 0, 0, -4, 5, 1); 
 		AddNewsToCategory (AllNews.Politics, "There are no sanctions now!", "Russia", 0, 0, -4, -4, 10, 10); 
@@ -81,7 +81,9 @@ public class News : MonoBehaviour
 		AddNewsToCategory (AllNews.Politics, "France and Britain target traffickers in migrant policing push.", "Migrants", 0, 0, -1, 0, 7, -3); 
 		AddNewsToCategory (AllNews.Politics, "During visit to Ukraine, Defence Secretary Michael Fallon announces UK will step up pace of training Ukrainian forces and add extra skills.", "Ukranian forces", 0, 2, 0, 0, 6, -3); 
 		AddNewsToCategory (AllNews.Politics, "Supreme Court strikes down law in Jerusalem passport case.", "Jerusaleum", 0, 0, 2, -0, -5, 4); 
-
+		AddNewsToCategory (AllNews.Politics, "Fire on the borders of Ukraine", "Ukraine", 0, 0, 2, -4, 4, 4); 
+		AddNewsToCategory (AllNews.Politics, "Summit in Canada starts in 2 days", "Summit", 0, 0, 0, -4, 5, 0);
+		//12
 		AddNewsToCategory (AllNews.Fun, "1) Bend The Rules: Hewlett-Packard (HP) 2) Refreshingly Honest: Honest Tea 3) The Last Selfie: World Wildlife Fund (WWF)", "Social Media Campaigns", 1, -2, -3, 4, 5, 1); 
 		AddNewsToCategory (AllNews.Fun, "PowerPoint won!", "Keynote Vs. PowerPoint", 0, -2, -3, 4, 0, 1); 
 		AddNewsToCategory (AllNews.Fun, "J.K. Rowling announced a new book called  Harry Potter : apocalypse.", "J.K. Rowling", 0, 0, 0, 5, 0, -5); 
@@ -94,7 +96,7 @@ public class News : MonoBehaviour
 		AddNewsToCategory (AllNews.Fun, "The biggest Hamburger - 1000kg, was made by thirsty Granny.", "Hamburger", 3, -2, -3, -3, -1, 3); 
 		AddNewsToCategory (AllNews.Fun, "Xbox two released!", "Xbox", 0, -6, 0, 15, 0, 0);
 		AddNewsToCategory (AllNews.Fun, "iPhone 7u comes this September. U - means UltraSpeed.", "iPhone 7u", 3, -2, -9, 10, 0, 1); 
-
+		//12
 		AddNewsToCategory (AllNews.Social, "Aunt Zina from Uvelka, Chelyabinsk, Russia lost her cat called Vasya.", "Aunt Zina", -6, +1, 0, 0, 0, +2); 
 		AddNewsToCategory (AllNews.Social, "The military should avoid turning the conduct of warfare over to machines, because nowadays one should be focused on ending war, not extending it into a robot era, Mark Gubrud, physicist and expert on emerging technology and human security.!", "Robots replacing soldiers", 5, 0, 5, 0, 0, -8); 
 		AddNewsToCategory (AllNews.Social, "Today’s geopolitical environment has made the task of creating a national payment system in Russia extremely urgent.", "Payment Cards", 0, 0, +4, -3, 0, -2); 
@@ -106,25 +108,30 @@ public class News : MonoBehaviour
 		AddNewsToCategory (AllNews.Social, "Suits. Season 5 reached the highest rate at IMDB.", "Suits", -1, 0, 0, 4, 0, 3); 
 		AddNewsToCategory (AllNews.Social, "Sharing childcare makes for happier couples with better sex lives, US research suggests.", "Research", 3, 0, 0, -2, 0, 5); 
 		AddNewsToCategory (AllNews.Social, "Smartphone sales in China have fallen year-on-year for the first time, according to data gathered by Gartner.", "Smartphones", 0, 0, 0, -4, 0, 5);
-
-		AddNewsToCategory (AllNews.Sport, "Messi reached the Golden Socks medal. ", "Messi", 0, 5, -6, 4, 0, -1);
+		AddNewsToCategory (AllNews.Social, "New research in the Journal of Neurology Neurosurgery & Psychiatry found that nine risk factors may be the cause of two-thirds of Alzheimer’s cases, TIME reported.", "Research", 6, 0, -6, -3, 0, 2);
+		//12
+		AddNewsToCategory (AllNews.Sport, "Meci reached the Golden Socks medal. ", "Mecci", 0, 5, -6, 4, 0, -1);
 		AddNewsToCategory (AllNews.Sport, "Dota 2 became a new olympic sport. ", "Dota2 News", 0, 4, 0, 4, 0, -5);
 		AddNewsToCategory (AllNews.Sport, "A number of famous Kenyan distance runners are to take part in a 22-day ‘walk for peace,’ across the north of the country. The 836 km event is aimed at stopping ethnic violence in the area and hopes to raise $250,000 to support peace initiatives. ", "Star athletes", 0, 5, 0, -4, 0, 3);
-		AddNewsToCategory (AllNews.Sport, "A 15-year-old powerlifting champion, Maryana Naumova from Russia, has met with 'The Terminator,' Arnold Schwarzenegger, and asked him to make peace between US and Russia. He promised to work on it, she said.", "World's 'strongest' girl", 0, 0, 0, -3, 5, -1);
+		AddNewsToCategory (AllNews.Sport, "A 15-year-old powerlifting champion, Maryana Laumova from Russia, has met with 'The Terminator,' Arnold Schdarzenegger, and asked him to make peace between US and Russia. He promised to work on it, she said.", "World's 'strongest' girl", 0, 0, 0, -3, 5, -1);
 		AddNewsToCategory (AllNews.Sport, "All three medals taken by Russia in the pairs’ competition saw the country completing the 2015 European Figure Skating Championships with an impressive 9 medals, including 2 golds snatched in two medals sweeps. ", "Figure skating Euros", 0, 6, 0, 2, -7, 1);
 		AddNewsToCategory (AllNews.Sport, "Barcelona won the Champions League. ", "FBC", 0, 7, 0, 2, -5, 0);
-		AddNewsToCategory (AllNews.Sport, "Cristiano Ronaldo due to the 'TOP SPORTSMEN 2015 RATING' is the fastest football player in the worldl. ", "Ronaldo", 0, 3, 0, -3, 0, 4);
+		AddNewsToCategory (AllNews.Sport, "Cristiano Robaldo due to the 'TOP SPORTSMEN 2015 RATING' is the fastest football player in the worldl. ", "Robaldo", 0, 3, 0, -3, 0, 4);
 		AddNewsToCategory (AllNews.Sport, "The preparations for Olympic Games 2016 are coming to the end. ", "Olympic Games 2016", 0, 1, 0, 0, -5, 10);
 		AddNewsToCategory (AllNews.Sport, "Basketball Star Quan Chi has ended his career (not proofed). ", "Basketball Star", 0, -6, 0, 0, 0, 5);
 		AddNewsToCategory (AllNews.Sport, "FIFA has changed its president. ", "FIFA", 0, 3, 2, -9, 3, 1);
+		AddNewsToCategory (AllNews.Sport, "Famous runner broke his leg ", "Famous runner", 0, -2, 0, 2, 0, 3);
+		AddNewsToCategory (AllNews.Sport, "ex NHL star goes in politics", "NHL", 0, 4, 0, 0, 5, -5);
 
+		//6 2
 		AddNewsToCategory (AllNews.Criminal, "A teenager has been hailed a hero after helping a kidnapped woman escape from the clutches of her ex-boyfriend.", "Teenage hero", 0, 5, +6, 0, -10, 5);
 		AddNewsToCategory (AllNews.Criminal, "Investigators are trying to determine why an armed veteran opened fire in a federal building in Manhattan, fatally shooting a security guard before killing himself. ", "Federal building shooting ", -5, 0, 8, -2, 0, -3);
 		AddNewsToCategory (AllNews.Criminal, "A man convicted in the 1999 slaying of an 84-year-old woman through a unique glove and DNA match has been sentenced to life in prison. ", "Life in prison", -3, 0, +6, -3, 0, -1);
-		AddNewsToCategory (AllNews.Criminal, "Barak Obama was killed by his bodyguard. ", "Obama is DEAD (not proffed)", 0, 0, -15, 0, 0, 20);
+		AddNewsToCategory (AllNews.Criminal, "Balak Olama was killed by his bodyguard. ", "Olama is DEAD (not proffed)", 0, 0, -15, 0, 0, 20);
 		AddNewsToCategory (AllNews.Criminal, "A Baseball star was murdered at his own house.", "Murder. Bill Strawberry ", 0, -15, 0, 10, 0, 10);
-		AddNewsToCategory (AllNews.Criminal, "Dutch police make arrest over fake Van Gogh painting.", "Van Gogh)", 0, 0, 6, 0, 0, -2);
-
+		AddNewsToCategory (AllNews.Criminal, "Dutch police make arrest over fake Van Gogh painting.", "Van Gogh", 0, 0, 6, 0, 0, -2);
+		AddNewsToCategory (AllNews.Criminal, "Simm: 'A new act of terrorism was detected in Mexico'", "Terrorism", 0, 0, 6, -2, 0, -4);
+		// 5 4
 		AddNewsToCategory (AllNews.Science, "We're smarter than chickens", "Human & Chicken", 2, -1, -2, -2, -1, 10);
 		AddNewsToCategory (AllNews.Science, "The July average temperature across global land and ocean surfaces was 1.46°F (0.81°C) above the 20th century average.", "Global Warming", 5, 0, 0, -2, 0, -5);
 		AddNewsToCategory (AllNews.Science, "Black holes may make ideal dark matter labs", "Dark Energy", 5, 0, 0, -3, 0, 0);
@@ -154,4 +161,34 @@ public class News : MonoBehaviour
             if (CurNews.Politics.Contains(news)) CurNews.Politics.Remove(news);
         }
     }
+
+
+//			1)
+//			FBI
+//			message: A dangerous murderer did the prison break. We have worked badly and could not catch him. Publish news that he was caught. 
+//			message No: You saved 5 people from death.
+//			message Yes: 1 employee wants to work with you, but people don’t trust you. -15% to all categories.
+//			2)
+//			Chief
+//			message: Our competitors have opened a new restaurant. Publish news that they use spoiled food. Reward: open boost category.
+//			message No: People love this restaurant. You too.
+//			message Yes: you opened new category and added +20% to social interest, but lost 400$ for slander
+//			3)
+//			Businessman
+//			message: Our plant accident occurred, and a large amount of harmful vapor emissions. Publish disapproving news. Reward 2000$
+//			message No: You prevented damaging people’s health. 
+//			message Yes: You earn 2000$, but lost 30% in social interest.
+//			4)
+//			President
+//			message: Publish the report that I am the most suitable candidate for the presidency.
+//			message Yes: President likes your news.
+//			message No: Spot check found your employees working illegal. You have to pay fines. Now you are only one. -1500$ -all employees.
+//							
+//							
+							
+
+
+
+
+
 }
