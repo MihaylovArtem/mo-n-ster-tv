@@ -15,24 +15,15 @@ public class WalkingPeople : MonoBehaviour {
 		newPosition = new Vector2 (Random.Range (0, 0.05f), Random.Range (0, 0.05f));
 
 	}
-	void OnCollisionEnter2D(Collision2D col) {
+	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.tag == "staticObject") {
 			newPosition = new Vector2(Random.Range (-1f, 0), Random.Range (-1f, 0));
 			newPosition = new Vector2 (Random.Range (0, 0.03f), Random.Range (0, 0.03f));
-			Destroy(col.gameObject);
 		}
 		Debug.Log("HOHO");
 	}
 
-	void OnTriggerEnter2D(Collider2D col){
-		Debug.Log ("HOHO");
-	}
-	void OnColliderEnter2D(Collider2D col){
-		Debug.Log ("HOHO");
-	}
-	void OnTriggerEnter2D(Collision2D col){
-		Debug.Log ("HOHO");
-	}
+
 
 	// Update is called once per frame
 	 private void Update () {
