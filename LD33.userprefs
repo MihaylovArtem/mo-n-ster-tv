@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/News.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WalkingPeople.cs">
     <Files>
-      <File FileName="Assets/Scripts/News.cs" Line="110" Column="84" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="179" Column="2" />
+      <File FileName="Assets/Scripts/WalkingPeople.cs" Line="33" Column="35" />
+      <File FileName="Assets/ParketScript.cs" Line="13" Column="3" />
+      <File FileName="Assets/Scripts/MiniGame.cs" Line="26" Column="172" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
