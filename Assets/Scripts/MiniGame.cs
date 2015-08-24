@@ -7,7 +7,7 @@ public class MiniGame : MonoBehaviour {
     // скорость ползунка после остановки пользователем, плавное замедление
 
     private float IndicatorDirection = 1;
-    private bool endOfGame = false;
+    private bool endOfGame;
     public GameObject greenScale;
 
     public GameObject indicator;
@@ -41,25 +41,23 @@ public class MiniGame : MonoBehaviour {
             }
         }
         else {
-                if ((IndicatorDirection*indicator.GetComponent<Rigidbody2D>().velocity.y) > 0) {
-                    if (((indicator.transform.position.y >=
-                          (greenScale.GetComponent<Renderer>().bounds.size.y + greenScale.transform.position.y)) &&
-                         (IndicatorDirection == 1)) ||
-                        ((indicator.transform.position.y <=
-                          (redScale.transform.position.y - redScale.GetComponent<Renderer>().bounds.size.y)) &&
-                         (IndicatorDirection == -1))) {
-                        IndicatorDirection *= -1;
-                        indicator.GetComponent<Rigidbody2D>().velocity = new Vector2(0,
-                            -indicator.GetComponent<Rigidbody2D>().velocity.y);
-                    }
+            if ((IndicatorDirection*indicator.GetComponent<Rigidbody2D>().velocity.y) > 0) {
+                if (((indicator.transform.position.y >=
+                      (greenScale.GetComponent<Renderer>().bounds.size.y + greenScale.transform.position.y)) &&
+                     (IndicatorDirection == 1)) ||
+                    ((indicator.transform.position.y <=
+                      (redScale.transform.position.y - redScale.GetComponent<Renderer>().bounds.size.y)) &&
+                     (IndicatorDirection == -1))) {
+                    IndicatorDirection *= -1;
                     indicator.GetComponent<Rigidbody2D>().velocity = new Vector2(0,
-                        indicator.GetComponent<Rigidbody2D>().velocity.y - SpeedRateOnClick*IndicatorDirection);
+                        -indicator.GetComponent<Rigidbody2D>().velocity.y);
                 }
-                else
-                {
-                    if (!endOfGame)
-                    {
-                        endOfGame = true;
+                indicator.GetComponent<Rigidbody2D>().velocity = new Vector2(0,
+                    indicator.GetComponent<Rigidbody2D>().velocity.y - SpeedRateOnClick*IndicatorDirection);
+            }
+            else {
+                if (!endOfGame) {
+                    endOfGame = true;
                     indicator.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
                     if ((indicator.transform.position.y <=
                          greenScale.transform.position.y + greenScale.GetComponent<Renderer>().bounds.size.y) &&
@@ -73,18 +71,19 @@ public class MiniGame : MonoBehaviour {
                         (indicator.transform.position.y >=
                          yellowScale.transform.position.y - yellowScale.GetComponent<Renderer>().bounds.size.y/2)) {
                         //коэффициенты для желтой полоски
-                             Debug.Log("Yellow!");
-                             NewsLabel.currentResult = NewsLabel.MiniGameResult.medium;
+                        Debug.Log("Yellow!");
+                        NewsLabel.currentResult = NewsLabel.MiniGameResult.medium;
                     }
                     if ((indicator.transform.position.y <= redScale.transform.position.y) &&
                         (indicator.transform.position.y >=
                          redScale.transform.position.y - redScale.GetComponent<Renderer>().bounds.size.y)) {
                         //коэффициенты для красной полоски
-                             Debug.Log("Red!");
-                             NewsLabel.currentResult = NewsLabel.MiniGameResult.bad;
+                        Debug.Log("Red!");
+                        NewsLabel.currentResult = NewsLabel.MiniGameResult.bad;
                     }
-                        GameObject.Find("NewsPrefab").GetComponent<NewsLabel>().okButtonComponent.interactable = true;
-                    }
+                    GameObject.Find("NewsPrefab").GetComponent<NewsLabel>().okButtonComponent.interactable = true;
+                    NewsLabel.EndMiniGame();
+                }
             }
         }
     }

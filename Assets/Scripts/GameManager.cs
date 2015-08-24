@@ -9,14 +9,14 @@ public class GameManager : MonoBehaviour {
     }
 
     public static int SALARY = 200;
-    public static int RENT = 500;
-    public static int GOVERNMENT_PERCENT = 15;
+    public static int RENT = 200;
+    public static int GOVERNMENT_PERCENT = 5;
 
 
     public static GameState currentGameState;
 
     public static int MaxNewsInDay = 2;
-    public static int Audience = 0;
+    public static int Audience = 1000;
     public static int Money = 1000;
     public static int DayCount = 1;
     public static int NewsInDayCount = 0;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
     private RectTransform cryminalPercentPanel;
     public GameObject[] entertainmentButtons;
     private RectTransform entertainmentPercentPanel;
-    private int incomeFromNews;
+    public static int incomeFromNews;
     private int moneyForRent;
     private int moneyForSalary;
     private Text moneyStats;
@@ -53,6 +53,16 @@ public class GameManager : MonoBehaviour {
     private Text topicsLeftText;
     public GameObject upgradesButton;
     public GameObject upgradesView;
+
+
+    public Text socialPercentText;
+    public Text sportPercentText;
+    public Text politicsPercentText;
+    public Text sciencePercentText;
+    public Text criminalPercentText;
+    public Text entertainmentPercentText;
+
+    public GameObject EndGameStats;
 
 
     private void ChangeInterestPercent() {
@@ -87,10 +97,16 @@ public class GameManager : MonoBehaviour {
         sportsPercentPanel = GameObject.Find("Sport Percent View").gameObject.GetComponent<RectTransform>();
         sciencePercentPanel = GameObject.Find("Science Percent View").gameObject.GetComponent<RectTransform>();
         polyticsPercentPanel = GameObject.Find("Polytics Percent View").gameObject.GetComponent<RectTransform>();
-        entertainmentPercentPanel =
-            GameObject.Find("Entertainment Percent View").gameObject.GetComponent<RectTransform>();
+        entertainmentPercentPanel = GameObject.Find("Entertainment Percent View").gameObject.GetComponent<RectTransform>();
         socialPercentPanel = GameObject.Find("Social Percent View").gameObject.GetComponent<RectTransform>();
         cryminalPercentPanel = GameObject.Find("Cryminal Percent View").gameObject.GetComponent<RectTransform>();
+        
+        socialPercentText = GameObject.Find("Social Percent Text").gameObject.GetComponent<Text>();
+        politicsPercentText = GameObject.Find("Polytics Percent Text").gameObject.GetComponent<Text>();
+        sciencePercentText = GameObject.Find("Science Percent Text").gameObject.GetComponent<Text>();
+        criminalPercentText = GameObject.Find("Cryminal Percent Text").gameObject.GetComponent<Text>();
+        entertainmentPercentText = GameObject.Find("Entertainment Percent Text").gameObject.GetComponent<Text>();
+        sportPercentText = GameObject.Find("Sport Percent Text").gameObject.GetComponent<Text>();
     }
 
 
@@ -100,14 +116,16 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void StartDay() {
+    public void StartDay()
+    {
+        DayCount++;
+        EndGameStats.transform.localScale = new Vector3(0,0,0);
         startBroadcastingButton.transform.localScale = new Vector3(1, 1, 1);
         upgradesButton.transform.localScale = new Vector3(1, 1, 1);
 
         tab2Button.GetComponent<TabControl>().OnClick();
         currentGameState = GameState.preparing;
         for (int i = 0; i < 3; i++) {
-            Debug.Log(News.CurNews.Sport.Count + " " + i);
             if (News.CurNews.Sport.Count > i)
                 sportButtons[i].GetComponent<ChooseButtonAction>().attachedNews =
                     (News.AddingNews) News.CurNews.Sport[i];
@@ -139,7 +157,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartBroadcasting() {
-
+        if (upgradesView.transform.localScale != new Vector3(0,0,0))
         upgradesView.GetComponent<Upgrades>().ClickUpgrades();
         
         tab1Button.GetComponent<TabControl>().OnClick();
@@ -159,16 +177,9 @@ public class GameManager : MonoBehaviour {
 
         incomeFromNews = 0;
         NewsLabel.news.AddRange(newsToBroadcast);
-        foreach (object newToBroadcast in newsToBroadcast) {
-            StartMiniGame();
-            int income = CountIncomeFromNew((News.AddingNews) newToBroadcast);
-            incomeFromNews += income;
-            Money += income;
-        }
     }
 
     public void EndDay() {
-        DayCount++;
         foreach (GameObject button in GameObject.FindGameObjectsWithTag("ChooseButton")) {
             var buttonScript = button.GetComponent<ChooseButtonAction>();
             if (buttonScript.isPressed) {
@@ -194,29 +205,37 @@ public class GameManager : MonoBehaviour {
 
         Money = Money - moneyForSalary - moneyForRent - moneyToGovernment;
 
-        StartDay();
+        EndGameStats.transform.localScale = new Vector3(1,1,1);
     }
 
-    public int CountIncomeFromNew(News.AddingNews news) {
+    public static int CountIncomeFromNew(News.AddingNews news) {
+        int income= 0;
         if (News.CurNews.Science.Contains(news)) {
-            return Interest.Science/100*Audience;
+            income = Interest.Science * Audience ;
         }
-        if (News.CurNews.Sport.Contains(news)) {
-            return Interest.Sport/100*Audience;
+        else if (News.CurNews.Sport.Contains(news)) {
+            income = Interest.Sport * Audience / 100;
         }
-        if (News.CurNews.Social.Contains(news)) {
-            return Interest.Social/100*Audience;
+        else if (News.CurNews.Social.Contains(news))
+        {
+            income = Interest.Social * Audience / 100;
         }
-        if (News.CurNews.Criminal.Contains(news)) {
-            return Interest.Cryminal/100*Audience;
+        else if (News.CurNews.Criminal.Contains(news))
+        {
+            income = Interest.Cryminal * Audience / 100;
         }
-        if (News.CurNews.Fun.Contains(news)) {
-            return Interest.Entertainment/100*Audience;
+        else if (News.CurNews.Fun.Contains(news))
+        {
+            income = Interest.Entertainment * Audience / 100;
         }
-        if (News.CurNews.Politics.Contains(news)) {
-            return Interest.Polytics/100*Audience;
+        else if (News.CurNews.Politics.Contains(news)) {
+            income = Interest.Polytics * Audience / 100;
         }
-        return 0;
+        else income = 0;
+
+        Money += income;
+        incomeFromNews += income;
+        return income;
     }
 
 
@@ -233,6 +252,13 @@ public class GameManager : MonoBehaviour {
             polyticsPercentPanel.rect.height);
         cryminalPercentPanel.sizeDelta = new Vector2((float) Interest.Cryminal/100*backViewPanel.rect.width,
             cryminalPercentPanel.rect.height);
+
+        socialPercentText.text = Interest.Social + "%";
+        sportPercentText.text = Interest.Sport + "%";
+        politicsPercentText.text = Interest.Polytics + "%";
+        sciencePercentText.text = Interest.Science + "%";
+        criminalPercentText.text = Interest.Cryminal + "%";
+        entertainmentPercentText.text = Interest.Entertainment + "%";
 
         audienceStats.text = Audience + " PEOPLE ARE WATCHING YOU";
         moneyStats.text = "YOU HAVE " + Money + "$";
