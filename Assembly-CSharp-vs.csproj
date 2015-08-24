@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\MiniGame.cs" />
      <Compile Include="Assets\Scripts\News.cs" />
      <Compile Include="Assets\Scripts\TabControl.cs" />
+     <Compile Include="Assets\Scripts\Upgrades.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Programms/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
