@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 
 public class ChooseButtonAction : MonoBehaviour {
-
     public Color DisabledColor;
     public Color EnabledColor;
     public News.AddingNews attachedNews;
@@ -13,6 +12,10 @@ public class ChooseButtonAction : MonoBehaviour {
     private Text thisButtonText;
     private Image thisButtonsImage;
 
+    public Sprite enabledSprite;
+    public Sprite disabledSprite;
+
+
     // Use this for initialization
     private void Start() {
         thisButton = gameObject.GetComponent<Button>();
@@ -21,16 +24,18 @@ public class ChooseButtonAction : MonoBehaviour {
     }
 
     public void OnClick() {
-        if (isClickable) {
+        if (attachedNews.Header != "") {
             if (!isPressed) {
                 if (GameManager.numberOfPressedButtons < GameManager.MaxNewsInDay) {
                     isPressed = true;
+                    thisButtonsImage.sprite = enabledSprite;
                     thisButtonsImage.color = EnabledColor;
                     GameManager.numberOfPressedButtons++;
                 }
             }
             else {
                 isPressed = false;
+                thisButtonsImage.sprite = disabledSprite;
                 thisButtonsImage.color = DisabledColor;
                 GameManager.numberOfPressedButtons--;
             }
@@ -39,20 +44,23 @@ public class ChooseButtonAction : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        if (!attachedNews.Equals(null)) {
-            isClickable = true;
+        if (attachedNews.Header == "") {
+            thisButton.interactable = false;
         }
         else {
-            isClickable = false;
+            thisButton.interactable = true;
         }
     }
 
     private void OnGUI() {
-        if (attachedNews.Text != "") {
+        if (attachedNews.Header != "") {
             thisButtonText.text = attachedNews.Header;
         }
         else {
-            thisButtonText.text = "New topic will appear next day";
+            thisButtonText.text = "No news for now";
+        }
+        if (GameManager.currentGameState == GameManager.GameState.broadcasting && thisButton.interactable) {
+            thisButton.interactable = false;
         }
     }
 }
