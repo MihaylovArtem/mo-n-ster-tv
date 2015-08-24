@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour {
     public GameObject tab2Button;
     private Text topicsLeftText;
     public GameObject upgradesButton;
+    public GameObject upgradesView;
+
 
     private void ChangeInterestPercent() {
     }
@@ -137,6 +139,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartBroadcasting() {
+
+        upgradesView.GetComponent<Upgrades>().ClickUpgrades();
+        
         tab1Button.GetComponent<TabControl>().OnClick();
 
         startBroadcastingButton.transform.localScale = new Vector3(0, 0, 0);

@@ -9,9 +9,11 @@ public class NewsLabel : MonoBehaviour {
     public GameObject newsLabel;
     private Text newsText;
     public GameObject okButton;
-    private Button okButtonComponent;
+    public Button okButtonComponent;
     private Text okButtonText;
     public static MiniGameResult currentResult = MiniGameResult.medium;
+    public GameObject MiniGameObject;
+    public GameObject cloneMiniGameObject;
 
     public enum MiniGameResult {
         perfect,
@@ -28,18 +30,20 @@ public class NewsLabel : MonoBehaviour {
     }
 
     private void StartMiniGame() {
-
+        var actionSide = GameObject.Find("Action side");
+        cloneMiniGameObject = Instantiate(MiniGameObject);
+        cloneMiniGameObject.transform.SetParent(actionSide.transform, false);
     }
 
-    public void EndMiniGame() {
+    public static void EndMiniGame() {
         var currentNews = (News.AddingNews) news[0];
-        if (currentResult == MiniGameResult.perfect || currentResult == MiniGameResult.bad) {
-            GameManager.Interest.Science += currentNews.ScienceChange;
-            GameManager.Interest.Social += currentNews.SocialChange;
-            GameManager.Interest.Sport += currentNews.SportChange;
-            GameManager.Interest.Polytics += currentNews.PoliticsChange;
-            GameManager.Interest.Entertainment += currentNews.FunChange;
-            GameManager.Interest.Cryminal += currentNews.CriminalChange;
+        if (currentResult == MiniGameResult.perfect) {
+            if (currentNews.ScienceChange>0) GameManager.Interest.Science += currentNews.ScienceChange;
+            if (currentNews.SocialChange > 0) GameManager.Interest.Social += currentNews.SocialChange;
+            if (currentNews.SportChange > 0) GameManager.Interest.Sport += currentNews.SportChange;
+            if (currentNews.PoliticsChange > 0) GameManager.Interest.Polytics += currentNews.PoliticsChange;
+            if (currentNews.FunChange > 0) GameManager.Interest.Entertainment += currentNews.FunChange;
+            if (currentNews.CriminalChange > 0) GameManager.Interest.Cryminal += currentNews.CriminalChange;
         }
         else if (currentResult == MiniGameResult.medium) {
             GameManager.Interest.Science += currentNews.ScienceChange/2;
@@ -48,6 +52,16 @@ public class NewsLabel : MonoBehaviour {
             GameManager.Interest.Polytics += currentNews.PoliticsChange/2;
             GameManager.Interest.Entertainment += currentNews.FunChange/2;
             GameManager.Interest.Cryminal += currentNews.CriminalChange/2;
+        }
+        else if (currentResult == MiniGameResult.bad)
+        {
+            if (currentNews.ScienceChange < 0) GameManager.Interest.Science += currentNews.ScienceChange;
+            if (currentNews.SocialChange < 0) GameManager.Interest.Social += currentNews.SocialChange;
+            if (currentNews.SportChange < 0) GameManager.Interest.Sport += currentNews.SportChange;
+            if (currentNews.PoliticsChange < 0) GameManager.Interest.Polytics += currentNews.PoliticsChange;
+            if (currentNews.FunChange < 0) GameManager.Interest.Entertainment += currentNews.FunChange;
+            if (currentNews.CriminalChange < 0) GameManager.Interest.Cryminal += currentNews.CriminalChange;
+            
         }
     }
 
@@ -62,11 +76,14 @@ public class NewsLabel : MonoBehaviour {
         }
         else if (okButtonText.text == "STOP") {
             okButtonText.text = "GOT IT";
+            cloneMiniGameObject.GetComponent<MiniGame>().userPressedButton = true;
+            okButtonComponent.interactable = false;
         }
         else if (okButtonText.text == "GOT IT") {
-            okButtonText.text = "OK";
             EndMiniGame();
             news.RemoveAt(0);
+            Destroy(cloneMiniGameObject);
+            okButtonText.text = "OK";
         }
     }
 
