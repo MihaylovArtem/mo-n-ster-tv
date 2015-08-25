@@ -9,19 +9,21 @@ public class GameManager : MonoBehaviour {
         stats
     }
 
-    public static int SALARY = 200;
+    public static int SALARY = 100;
     public static int RENT = 200;
     public static int GOVERNMENT_PERCENT = 5;
 
+    public GameObject Dialog;
 
     public static GameState currentGameState;
 
     public static int MaxNewsInDay = 2;
-    public static int Audience = 1000;
-    public static int Money = 0;
+    public static int Audience = 500;
+    public static int Money = 1000;
     public static int DayCount = 1;
     public static int NewsInDayCount = 0;
     public static int numberOfPressedButtons = 0;
+    public static int moral = 0;
 
     private Text audienceStats;
 
@@ -55,6 +57,8 @@ public class GameManager : MonoBehaviour {
     public GameObject upgradesButton;
     public GameObject upgradesView;
 
+    public GameObject music;
+
 
     public Text socialPercentText;
     public Text sportPercentText;
@@ -71,10 +75,38 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     private void Start() {
+        Audience = 500;
+        Money = 1000;
+        MaxNewsInDay = 2;
+        DayCount = 8;
+        moral = 0;
+        Interest.Science = Random.Range(10, 30);
+        Interest.Social = Random.Range(10, 30);
+        Interest.Entertainment = Random.Range(10, 30);
+        Interest.Sport = Random.Range(10, 30);
+        Interest.Cryminal = Random.Range(10, 30);
+        Interest.Polytics = Random.Range(10, 30);
+
         News.InitializeNews();
         InitializeGame();
         InitializeUI();
         StartDay();
+    }
+
+
+    void Update() {
+        if (Interest.Science > 100) Interest.Science = 100;
+        if (Interest.Science < 0) Interest.Science = 0;
+        if (Interest.Social > 100) Interest.Social = 100;
+        if (Interest.Social < 0) Interest.Social = 0;
+        if (Interest.Sport > 100) Interest.Sport = 100;
+        if (Interest.Sport < 0) Interest.Sport = 0;
+        if (Interest.Entertainment > 100) Interest.Entertainment = 100;
+        if (Interest.Entertainment < 0) Interest.Entertainment = 0;
+        if (Interest.Cryminal > 100) Interest.Cryminal = 100;
+        if (Interest.Cryminal < 0) Interest.Cryminal = 0;
+        if (Interest.Polytics > 100) Interest.Polytics = 100;
+        if (Interest.Polytics < 0) Interest.Polytics = 0;
     }
 
     private void InitializeGame() {
@@ -117,8 +149,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void StartDay()
-    {
+    public void StartDay() {
+        MiniGame.SpeedRate = Random.Range(4f, 10f);
+        MiniGame.SpeedRateOnClick = Random.Range(0.02f, 0.1f) * (MiniGame.SpeedRate/4);
+        if (DayCount == 3 || DayCount == 5 || DayCount == 7 || DayCount == 9) {
+            Dialog.transform.localScale = new Vector3(1,1,1);
+        }
+        music.GetComponent<MusicScript>().PlayMusic(Random.Range(1,3));
         DayCount++;
         EndGameStats.transform.localScale = new Vector3(0,0,0);
         startBroadcastingButton.transform.localScale = new Vector3(1, 1, 1);
@@ -158,6 +195,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartBroadcasting() {
+        music.GetComponent<MusicScript>().PlayMusic(3);
         if (upgradesView.transform.localScale != new Vector3(0,0,0))
         upgradesView.GetComponent<Upgrades>().ClickUpgrades();
         
@@ -201,7 +239,7 @@ public class GameManager : MonoBehaviour {
         CheckCategory(News.AllNewsCopy.Politics, News.CurNews.Politics);
         CheckCategory(News.AllNewsCopy.Criminal, News.CurNews.Criminal);
 
-        moneyForSalary = (MaxNewsInDay - 1)*SALARY;
+        moneyForSalary = (MaxNewsInDay - 2)*SALARY;
         moneyForRent = RENT;
         moneyToGovernment = incomeFromNews*GOVERNMENT_PERCENT/100;
 
@@ -263,6 +301,11 @@ public class GameManager : MonoBehaviour {
         criminalPercentText.text = Interest.Cryminal + "%";
         entertainmentPercentText.text = Interest.Entertainment + "%";
 
+        if (moral == 0 || moral == 1 || moral == -1) moralStats.text = "YOU ARE NEUTRAL";
+        else if (moral == 2 || moral == 3) moralStats.text += "YOU ARE GOOD";
+        else if (moral == -3 || moral == -2) moralStats.text += "YOU ARE BAD";
+        else if (moral == -4) moralStats.text += "YOU ARE MONSTER";
+        else if (moral == 4) moralStats.text += "YOU ARE ANGEL";
         audienceStats.text = Audience + " PEOPLE ARE WATCHING YOU";
         moneyStats.text = "YOU HAVE " + Money + "$";
 

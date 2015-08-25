@@ -3,7 +3,7 @@
 public class MiniGame : MonoBehaviour {
     public static float SpeedRate = 4; //скорость ползунка в зависимости от количества выбранных тем
 
-    private static float SpeedRateOnClick = 0.05f;
+    public static float SpeedRateOnClick = 0.05f;
     // скорость ползунка после остановки пользователем, плавное замедление
 
     private float IndicatorDirection = 1;

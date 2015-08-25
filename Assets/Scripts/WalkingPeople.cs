@@ -15,7 +15,7 @@ public class WalkingPeople : MonoBehaviour {
 		newPosition = new Vector2 (Random.Range (0, 0.05f), Random.Range (0, 0.05f));
 
 	}
-	void OnTriggerEnter2D(Collider2D col) {
+	void OnCollisionEnter2D(Collision2D col) {
 		if (col.gameObject.tag == "staticObject") {
 			newPosition = new Vector2(Random.Range (-1f, 0), Random.Range (-1f, 0));
 			newPosition = new Vector2 (Random.Range (0, 0.03f), Random.Range (0, 0.03f));

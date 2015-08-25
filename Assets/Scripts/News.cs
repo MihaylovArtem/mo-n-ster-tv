@@ -162,29 +162,7 @@ public class News : MonoBehaviour
         }
     }
 
-
-//			1)
-//			FBI
-//			message: A dangerous murderer did the prison break. We have worked badly and could not catch him. Publish news that he was caught. 
-//			message No: You saved 5 people from death.
-//			message Yes: 1 employee wants to work with you, but people don’t trust you. -15% to all categories.
-//			2)
-//			Chief
-//			message: Our competitors have opened a new restaurant. Publish news that they use spoiled food. Reward: open boost category.
-//			message No: People love this restaurant. You too.
-//			message Yes: you opened new category and added +20% to social interest, but lost 400$ for slander
-//			3)
-//			Businessman
-//			message: Our plant accident occurred, and a large amount of harmful vapor emissions. Publish disapproving news. Reward 2000$
-//			message No: You prevented damaging people’s health. 
-//			message Yes: You earn 2000$, but lost 30% in social interest.
-//			4)
-//			President
-//			message: Publish the report that I am the most suitable candidate for the presidency.
-//			message Yes: President likes your news.
-//			message No: Spot check found your employees working illegal. You have to pay fines. Now you are only one. -1500$ -all employees.
-//							
-//							
+		
 							
 
 

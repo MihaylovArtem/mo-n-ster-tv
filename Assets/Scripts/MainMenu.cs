@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     private bool isHowToPlayButtonPressed = false;
 
     private int HowToPlayClicks = 0;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -45,11 +46,11 @@ public class MainMenu : MonoBehaviour
                 switch (HowToPlayClicks)
             {
                 case 0:
-                    HowToPlayText.text = "lalala1";
+                    HowToPlayText.text = "Each day you have to choose news to publish. You will earn more money, if people interested in this category.";
                     HowToPlayClicks++;
                     break;
                 case 1:
-                    HowToPlayText.text = "lalala2";
+                    HowToPlayText.text = "Buy different boosts to develop your agency. More employees will speed up your work.";
                     HowToPlayClicks++;
                     break;
                 case 2:
@@ -81,6 +82,6 @@ public class MainMenu : MonoBehaviour
     public void HowToPlay()
     {
         isHowToPlayButtonPressed = true;
-        HowToPlayText.text = "lalala0";
+        HowToPlayText.text = "Good afternoon! You are the head of the news agency. Publish news, increase amount of your followers - earn more and more money. You need to hold out for 10 days.";
     }
 }

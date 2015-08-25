@@ -38,7 +38,12 @@ public class EndDayScript : MonoBehaviour {
         else {
             GameOverScreen.transform.localScale = new Vector3(0, 0, 0);
         }
-	    OverallStats.text = "TOTAL MONEY: " + GameManager.Money + "$\nTOTAL VIEWERS: " + GameManager.Audience + "\nYOU ARE NEUTRAL";
+	    OverallStats.text = "TOTAL MONEY: " + GameManager.Money + "$\nTOTAL VIEWERS: " + GameManager.Audience+"\n";
+	    if (GameManager.moral == 0 ||GameManager.moral == 1 || GameManager.moral == -1) OverallStats.text += "YOU ARE NEUTRAL";
+        else if (GameManager.moral == 2 || GameManager.moral == 3) OverallStats.text += "YOU ARE GOOD";
+        else if (GameManager.moral == -3 || GameManager.moral == -2) OverallStats.text += "YOU ARE BAD";
+        else if (GameManager.moral == -4) OverallStats.text += "YOU ARE MONSTER";
+        else if (GameManager.moral == 4) OverallStats.text += "YOU ARE ANGEL";
 	    InterestStats.text = "SCIENCE INTEREST " + GameManager.Interest.Science + "%\nSPORT INTEREST " +
 	                         GameManager.Interest.Sport + "%\nSOCIAL INTEREST " + GameManager.Interest.Social +
 	                         "%\nPOLITICS INTEREST " + GameManager.Interest.Polytics
@@ -47,11 +52,15 @@ public class EndDayScript : MonoBehaviour {
 
         title.text = "END OF DAY " + (GameManager.DayCount-1);
         earnings.text = "YOU EARNED " + GameManager.incomeFromNews + "$";
-        expenses.text = "EXPENSES:\nSALARY: " + GameManager.SALARY + "$ * " + (GameManager.MaxNewsInDay - 2) + " = " + GameManager.SALARY * (GameManager.MaxNewsInDay - 1)
+        expenses.text = "EXPENSES:\nSALARY: " + GameManager.SALARY + "$ * " + (GameManager.MaxNewsInDay - 2) + " = " + GameManager.SALARY * (GameManager.MaxNewsInDay - 2)
             + "$\nRENT: " + GameManager.RENT + "$\nTAXES: " + GameManager.GOVERNMENT_PERCENT + "% * " + GameManager.incomeFromNews + "$ = " + GameManager.incomeFromNews * GameManager.GOVERNMENT_PERCENT / 100 + "$";
         total.text = "PROFIT: " + GameManager.incomeFromNews + "$ - " + 
 	    (GameManager.SALARY*(GameManager.MaxNewsInDay - 1) + GameManager.RENT +
 	    GameManager.incomeFromNews*GameManager.GOVERNMENT_PERCENT/100) + "$ = " + (GameManager.incomeFromNews- (GameManager.SALARY*(GameManager.MaxNewsInDay - 1) + GameManager.RENT +
 	    GameManager.incomeFromNews*GameManager.GOVERNMENT_PERCENT/100)) + "$";
 	}
+
+    public void LoadMainMenu() {
+        Application.LoadLevel("mainMenu");
+    }
 }
